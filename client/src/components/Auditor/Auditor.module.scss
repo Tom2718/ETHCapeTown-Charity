@@ -5,8 +5,8 @@
   display: flex;
   flex-flow: column wrap;
   justify-content: flex-start;
-  align-items: flex-start;
-  width: 380px;
+  align-items: center;
+  max-width: 70%;
   height: auto;
   padding: 40px 20px;
   border: 1px solid #ccc;
@@ -20,7 +20,7 @@
   .dataPoint {
     display: flex;
     flex-flow: column nowrap;
-    align-items: flex-start;
+    align-items: center;
     margin: 5px 0;
     width: 100%;
 

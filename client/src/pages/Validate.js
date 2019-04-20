@@ -6,9 +6,10 @@ import {
 import Web3Info from "../components/Web3Info/index.js";
 import Wallet from "../components/Wallet/index.js";
 import Instructions from "../components/Instructions/index.js";
-import CounterUI from "../components/Counter/index.js";
+import AuditorUI from "../components/Auditor/index.js";
 import getWeb3, { getGanacheWeb3 } from "../utils/getWeb3";
 import { zeppelinSolidityHotLoaderOptions } from '../../config/webpack';
+import Auditing from "../../../build/contracts/Auditing.json";
 
 export default class Validate extends React.Component {
   state = {
@@ -31,7 +32,7 @@ export default class Validate extends React.Component {
   renderLoader() {
     return (
       <div className={styles.loader}>
-        <Loader size="80px" color="red" />
+        <Loader size="80px" color="blue" />
         <h3> Loading Web3, accounts, and contract...</h3>
         <p> Unlock your metamask </p>
       </div>
@@ -40,19 +41,23 @@ export default class Validate extends React.Component {
 
   componentDidMount = async () => {
     const hotLoaderDisabled = zeppelinSolidityHotLoaderOptions.disabled;
-    let Counter = {};
-    let Wallet = {};
-    try {
-      Counter = require("../../contracts/Counter.sol");
-      Wallet = require("../../contracts/Wallet.sol");
-    } catch (e) {
-      console.log(e);
-    }
+
+    // let Auditing = {};
+    // // let Wallet = {};
+    // try {
+    //   Auditing = require("../../../contracts/Auditing.sol");
+    //   // Wallet = require("../../contracts/Wallet.sol");
+    //   console.log("Auditing contract loaded.");
+    // } catch (e) {
+    //   console.log(e);
+    // }
+    
+
     try {
       const isProd = process.env.NODE_ENV === 'production';
       if (!isProd) {
         // Get network provider and web3 instance.
-        const web3 = await getWeb3();
+        const web3 = await getWeb3(); // getWeb3
         let ganacheAccounts = [];
         try {
           ganacheAccounts = await this.getGanacheAddresses();
@@ -68,37 +73,39 @@ export default class Validate extends React.Component {
         let balance = accounts.length > 0 ? await web3.eth.getBalance(accounts[0]) : web3.utils.toWei('0');
         balance = web3.utils.fromWei(balance, 'ether');
         let instance = null;
-        let instanceWallet = null;
+        // let instanceWallet = null;
         let deployedNetwork = null;
-        if (Counter.networks) {
-          deployedNetwork = Counter.networks[networkId.toString()];
+        console.log("Auditing");
+        console.log(Auditing.networks);
+        console.log(networkId.toString());
+        if (Auditing.networks) {
+          deployedNetwork = Auditing.networks[networkId.toString()];
+          
+          deployedNetwork = Auditing.networks["1555770177484"]; // Don't ask
+
+          // deployedNetwork = Auditing.networks[0];
           if (deployedNetwork) {
             instance = new web3.eth.Contract(
-              Counter.abi,
+              Auditing.abi,
               deployedNetwork && deployedNetwork.address,
             );
           }
         }
-        if (Wallet.networks) {
-          deployedNetwork = Wallet.networks[networkId.toString()];
-          if (deployedNetwork) {
-            instanceWallet = new web3.eth.Contract(
-              Wallet.abi,
-              deployedNetwork && deployedNetwork.address,
-            );
-          }
-        }
-        if (instance || instanceWallet) {
+        // if (Wallet.networks) {
+        //   deployedNetwork = Wallet.networks[networkId.toString()];
+        //   if (deployedNetwork) {
+        //     instanceWallet = new web3.eth.Contract(
+        //       Wallet.abi,
+        //       deployedNetwork && deployedNetwork.address,
+        //     );
+        //   }
+        // }
+        if (instance ) {
           // Set web3, accounts, and contract to the state, and then proceed with an
           // example of interacting with the contract's methods.
           this.setState({
             web3, ganacheAccounts, accounts, balance, networkId, networkType, hotLoaderDisabled,
-            isMetaMask, contract: instance, wallet: instanceWallet
-          }, () => {
-            this.refreshValues(instance, instanceWallet);
-            setInterval(() => {
-              this.refreshValues(instance, instanceWallet);
-            }, 5000);
+            isMetaMask, contract: instance//, wallet: instanceWallet
           });
         }
         else {
@@ -120,6 +127,12 @@ export default class Validate extends React.Component {
     }
   }
 
+  createValidator = async (number) => {
+    const { accounts, contract } = this.state;
+    await contract.methods.createValidator(number).send({ from: accounts[0] });
+    // Update state...
+  };
+
   render() {
     return (
       <div className={styles.wrapper}>
@@ -127,7 +140,7 @@ export default class Validate extends React.Component {
         {/* {(!this.state.web3 || !this.state.wallet)
           ? (<ToastMessage message={"Can't connect to the Ethereum network."} />)
           : ( */}
-          {/* <div>
+        {/* <div>
             <div className={styles.widgets}>
               <Web3Info {...this.state} />
               <Wallet
@@ -138,7 +151,15 @@ export default class Validate extends React.Component {
               ganacheAccounts={this.state.ganacheAccounts}
               name="evm" accounts={this.state.accounts} />
           </div> */}
-          {/* )} */}
+        {/* )} */}
+        {console.log("web3")}
+        {console.log(this.state.web3)}
+        {console.log("contract")}
+        {console.log(this.state.contract)}
+        {this.state.contract !== null && console.log(this.state.contract.methods)}
+
+
+        {this.state.web3 && this.state.contract && (
         <div className={styles.contracts}>
           <h1>Validate Charities</h1>
           <p>
@@ -147,9 +168,11 @@ export default class Validate extends React.Component {
             a charity doing things correctly or incorrectly. If you are proven to be correct,
             can claim the token of others.
                 </p>
-          {/* <CounterUI /> */}
+          <AuditorUI 
+            newValidator={this.createValidator}
+            {...this.state} />
           {/* Interface with validator smart contract */}
-        </div>
+        </div>)}
       </div>
     );
   }
