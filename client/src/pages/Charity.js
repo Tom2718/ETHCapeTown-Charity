@@ -5,6 +5,8 @@ import {
   Flex, Box, Image
 } from 'rimble-ui';
 import EA from "../images/ea_logo.png"
+import { Link } from "react-router-dom";
+
 
 export default class Charity extends React.Component {
   render() {
@@ -22,7 +24,9 @@ export default class Charity extends React.Component {
                 <Text mb={4}>
                   Become a trustless charity.
                 </Text>
-                <Button mr={3} mx={'auto'}>Donate</Button>
+                <Link to="/login">
+                <Button mr={3} mx={'auto'}>Sign up</Button>
+                </Link>
               </Card>
             </Box>
             <Box width={1 / 3} bg="#FFFFFF">
@@ -39,7 +43,9 @@ export default class Charity extends React.Component {
                 <Text mb={4}>
                   Login to your dashboard here.
                 </Text>
+                <Link to="/login">
                 <Button mr={3} mx={'auto'}>Login</Button>
+                </Link>
               </Card>
             </Box>
           </Flex>

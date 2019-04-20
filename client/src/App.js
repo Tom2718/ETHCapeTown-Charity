@@ -3,7 +3,7 @@ import getWeb3, { getGanacheWeb3 } from "./utils/getWeb3";
 import Header from "./components/Header/index.js";
 import Footer from "./components/Footer/index.js";
 import Web3Info from "./components/Web3Info/index.js";
-import CounterUI from "./components/Counter/index.js";
+import CounterUI from "./components/Auditor/index.js";
 import Wallet from "./components/Wallet/index.js";
 import Instructions from "./components/Instructions/index.js";
 import {
@@ -15,6 +15,8 @@ import AMF from "./images/charities/amf.png";
 import EA from "./images/ea_logo.png"
 
 import Charity from "./pages/Charity";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Donate from "./pages/Donate";
 import Validate from "./pages/Validate";
 import Home from "./pages/Home";
@@ -124,6 +126,8 @@ class App extends Component {
   //     clearInterval(this.interval);
   //   }
   // }
+
+
 
   refreshValues = (instance, instanceWallet) => {
     if (instance) {
@@ -370,6 +374,8 @@ class App extends Component {
           <Route path="/charity" component={Charity} />
           <Route path="/validate" component={Validate} />
           <Route path="/donate" component={Donate} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
         </Switch>
         <Footer />
         {/* {this.state.route === '' && this.renderHome()}

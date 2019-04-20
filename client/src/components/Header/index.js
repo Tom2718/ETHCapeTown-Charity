@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './header.module.scss';
 import logo from '../../images/ea_logo.png';
 import { Link } from 'react-router-dom'
-
+import { Button } from 'rimble-ui';
 
 const Header = () => (
   <div className={styles.header}>
@@ -16,6 +16,7 @@ const Header = () => (
         <li><Link to="/charity" className={styles.link}> Charities</Link></li>
         <li><Link to="/validate" className={styles.link}> Validate</Link></li>
         <li><Link to="/faq" className={styles.link}> FAQ</Link></li>
+        <li><Link to="/register" className={styles.link}><Button size="small">Register</Button></Link></li>
       </ul>
     </nav>
   </div>
