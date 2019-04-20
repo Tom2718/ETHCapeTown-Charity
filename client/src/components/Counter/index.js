@@ -3,17 +3,16 @@ import { PublicAddress, Button } from 'rimble-ui';
 import styles from './Counter.module.scss';
 
 export default class Counter extends Component {
-
-
   render()  {
     const { contract, count } = this.props;
     return (
       <div className={styles.counter}>
-        <h3> Your Counter Contract Instance </h3>
+        <h3>Stake tokens in a Charity</h3>
         <div className={styles.dataPoint}>
           <div className={styles.label}>
             Instance address:
           </div>
+          {/* Select contract/charity */}
           <div className={styles.value}>
             <PublicAddress address={contract._address} />
           </div>

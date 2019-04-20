@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './header.module.scss';
 import logo from '../../images/ea_logo.png';
+import { Link } from 'react-router-dom'
+
 
 const Header = () => (
   <div className={styles.header}>
@@ -9,10 +11,11 @@ const Header = () => (
         <a href="/" className={styles.link}> <img src={logo} alt="logo" /></a>
       </div>
       <ul>
-        <li><a href="/" className={styles.link}> Home</a></li>
-        <li><a href="/donate" className={styles.link}> Donate</a></li>
-        <li><a href="/charity" className={styles.link}> Charities</a></li>
-        <li><a href="/faq" className={styles.link}> FAQ</a></li>
+        <li><Link to="/" className={styles.link}> Home</Link></li>
+        <li><Link to="/donate" className={styles.link}> Donate</Link></li>
+        <li><Link to="/charity" className={styles.link}> Charities</Link></li>
+        <li><Link to="/validate" className={styles.link}> Validate</Link></li>
+        <li><Link to="/faq" className={styles.link}> FAQ</Link></li>
       </ul>
     </nav>
   </div>
