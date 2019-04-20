@@ -4,7 +4,10 @@
   "description": "This directory contains the code for the donation and NGO interfaces.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,24 @@
   "bugs": {
     "url": "https://github.com/Tom2718/ETHCapeTown-Charity/issues"
   },
-  "homepage": "https://github.com/Tom2718/ETHCapeTown-Charity#readme"
+  "homepage": "https://github.com/Tom2718/ETHCapeTown-Charity#readme",
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "json-loader": "^0.5.7",
+    "node-sass": "^4.11.0",
+    "react": "^16.7.0",
+    "react-app-rewired": "^2.1.0",
+    "react-dom": "^16.7.0",
+    "react-scripts": "2.1.3",
+    "rimble-ui": "^0.2.0",
+    "styled-components": "^4.1.3",
+    "web3": "1.0.0-beta.37",
+    "zeppelin-solidity-hot-loader": "^1.0.0"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+]
 }
