@@ -17,9 +17,9 @@ export default class Charity extends React.Component {
           <p>Start with your own dashboard where you can
             launch projects and display transparency.
           </p>
-          <Flex width={0.8}>
-            <Box width={1 / 3} bg="#3C4653">
-              <Card width={0.9} mx={'auto'}>
+          <Flex width={0.6}>
+            <Box width={1 / 2}>
+              <Card width={0.9} mx={'auto'} bg="#EBECED">
                 <Heading>Register</Heading>
                 <Text mb={4}>
                   Become a trustless charity.
@@ -29,17 +29,9 @@ export default class Charity extends React.Component {
                 </Link>
               </Card>
             </Box>
-            <Box width={1 / 3} bg="#FFFFFF">
-              <Image
-                alt="Against Malaria Foundation"
-                borderRadius={8}
-                height="auto"
-                src={EA}
-              />
-            </Box>
-            <Box width={1 / 3} bg="#3C4653">
-              <Card width={0.9} mx={'auto'}>
-                <Heading>Dashboard</Heading>
+            <Box width={1 / 2}>
+              <Card width={0.9} mx={'auto'} bg="#EBECED">
+                <Heading>Login</Heading>
                 <Text mb={4}>
                   Login to your dashboard here.
                 </Text>
