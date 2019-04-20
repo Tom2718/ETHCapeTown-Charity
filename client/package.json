@@ -1,0 +1,19 @@
+{
+  "name": "charity-transparency",
+  "version": "0.0.1",
+  "description": "This directory contains the code for the donation and NGO interfaces.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tom2718/ETHCapeTown-Charity.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tom2718/ETHCapeTown-Charity/issues"
+  },
+  "homepage": "https://github.com/Tom2718/ETHCapeTown-Charity#readme"
+}
