@@ -8,6 +8,8 @@
   },
   "scripts": {
     "dev": "lite-server",
+    "deploy": "zos push --deploy-dependencies",
+    "session": "zos session --network development --from 0x90f8bf6a479f320ead074411a4b0e7944ea8c9c1 --expires 36000",
     "test": "echo \"Error: no test specified\" && sexit 1"
   },
   "author": "David",
@@ -27,4 +29,3 @@
     "zos-lib": "2.2.0"
   }
 }
-
