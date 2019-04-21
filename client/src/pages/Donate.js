@@ -139,7 +139,7 @@ export default class Donate extends React.Component {
                     ganacheAccounts={this.state.ganacheAccounts}
                     name="evm" accounts={this.state.accounts} />
                 </div>)} */}
-              <div className={styles.contracts}>
+              <div className={styles.mtop}>
                 <h1>Give to Charity</h1>
                 <p style={{maxWidth: "70%"}}>
                   On this page you can find your charity of choice and look into their

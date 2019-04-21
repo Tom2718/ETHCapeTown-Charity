@@ -81,7 +81,7 @@ export default class Validate extends React.Component {
         if (Auditing.networks) {
           deployedNetwork = Auditing.networks[networkId.toString()];
           
-          deployedNetwork = Auditing.networks["1555770177484"]; // Don't ask
+          // deployedNetwork = Auditing.networks["1555770177484"]; // Don't ask
 
           // deployedNetwork = Auditing.networks[0];
           if (deployedNetwork) {
@@ -128,8 +128,8 @@ export default class Validate extends React.Component {
   }
 
   createValidator = async (number) => {
-    const { accounts, contract } = this.state;
-    await contract.methods.createValidator(number).send({ from: accounts[0] });
+    const { accounts, contract, web3 } = this.state;
+    await contract.methods.createValidator(number).send({ from: accounts[0], value: number * 1e18 });
     // Update state...
   };
 
@@ -162,7 +162,7 @@ export default class Validate extends React.Component {
         {this.state.web3 && this.state.contract && (
         <div className={styles.contracts}>
           <h1>Validate Charities</h1>
-          <p>
+          <p style={{maxWidth: "70%"}}>
             The process of charity involves and incentivises peoples to cooperate and
             complete what they said they would. In this section, you can stake coins on
             a charity doing things correctly or incorrectly. If you are proven to be correct,

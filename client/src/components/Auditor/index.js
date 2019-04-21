@@ -3,8 +3,21 @@ import { PublicAddress, Button, Input, Field, Select } from 'rimble-ui';
 import styles from './Auditor.module.scss';
 
 export default class Auditor extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: 0
+    };
+  }
+
+  updateInputValue(evt) {
+    this.setState({
+      inputValue: evt.target.value
+    });
+  }
+
   render() {
-    const { contract, stake } = this.props;
+    const { contract } = this.props;
     return (
       <div className={styles.counter}>
         <h3>Stake tokens in a Charity</h3>
@@ -27,7 +40,7 @@ export default class Auditor extends Component {
           <div className={styles.label}>
             Validator Stake:
           </div>
-          <Input type="number" required={true} placeholder="123" />
+          <Input type="number" required={true} placeholder="123 ETH" onChange={evt => this.updateInputValue(evt)} />
         </div>
         <div className={styles.label}>
           Validator Claim:
@@ -44,7 +57,7 @@ export default class Auditor extends Component {
           </Field>
           {/* Insert different methods of contract here */}
           <Button
-            onClick={() => this.props.newValidator(1)}
+            onClick={() => this.props.newValidator(this.state.inputValue)}
             size="small">Validate this project</Button>
           {/* <Button
             onClick={() => this.props.decrease(1)}
