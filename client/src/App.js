@@ -20,6 +20,7 @@ import Register from "./pages/Register";
 import Donate from "./pages/Donate";
 import Validate from "./pages/Validate";
 import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
 import { Route, Switch } from "react-router-dom";
 
 import { zeppelinSolidityHotLoaderOptions } from '../config/webpack';
@@ -376,6 +377,7 @@ class App extends Component {
           <Route path="/donate" component={Donate} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/dashboard" component={Dashboard} />
         </Switch>
         <Footer />
         {/* {this.state.route === '' && this.renderHome()}

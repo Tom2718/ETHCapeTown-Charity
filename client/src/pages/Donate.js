@@ -10,7 +10,7 @@ import Instructions from "../components/Instructions/index.js";
 import getWeb3, { getGanacheWeb3 } from "../utils/getWeb3";
 import { zeppelinSolidityHotLoaderOptions } from '../../config/webpack';
 import AMF from "../images/charities/amf.png";
-
+import Data from "../data/charities";
 
 export default class Donate extends React.Component {
     state = {
@@ -126,7 +126,7 @@ export default class Donate extends React.Component {
         return (
             <div className={styles.wrapper}>
               {!this.state.web3 && this.renderLoader()}
-              {(!this.state.web3 || !this.state.wallet)
+              {/* {(!this.state.web3 || !this.state.wallet)
                 ? (<ToastMessage message={"Can't connect to the Ethereum network."} />)
                 : (<div>
                   <div className={styles.widgets}>
@@ -138,37 +138,36 @@ export default class Donate extends React.Component {
                   <Instructions
                     ganacheAccounts={this.state.ganacheAccounts}
                     name="evm" accounts={this.state.accounts} />
-                </div>)}
+                </div>)} */}
               <div className={styles.contracts}>
                 <h1>Give to Charity</h1>
-                <p>
+                <p style={{maxWidth: "70%"}}>
                   On this page you can find your charity of choice and look into their
                   finances and transparency on the blockchain. You can then donate and
                   watch where your money ends up.
                 </p>
-                <Flex width={0.8}>
+                {Data.map((obj, i)=>(
+                <Flex key={i} my={18} width={0.9}>
                   <Box width={2 / 3} bg="#3C4653">
-                    <Card width={0.9} mx={'auto'}>
-                      <Heading>Against Malaria Foundation</Heading>
+                    <Card width={0.9} mx={'auto'} my={48}>
+                      <Heading>{obj.name}</Heading>
                       <Text mb={4}>
-                        The Against Malaria Foundation distributes mosquito nets to people in
-                        high-risk areas.
-                        <br />
-                        By donating to the Against Malaria Foundation, you can help save lives.
+                        {obj.description}
                       </Text>
                       <Button mr={3}>Donate</Button>
-                      <OutlineButton>View Projects</OutlineButton>
+                      <OutlineButton>View Specific Projects</OutlineButton>
                     </Card>
                   </Box>
                   <Box p={3} width={1 / 3} bg="black" color="white">
                     <Image
-                      alt="Against Malaria Foundation"
+                      alt={obj.name}
                       borderRadius={8}
                       height="auto"
-                      src={AMF}
+                      src={obj.img}
                     />
                   </Box>
                 </Flex>
+                ))}
               </div>
             </div>
           );

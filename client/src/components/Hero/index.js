@@ -39,7 +39,7 @@ export default class Hero extends Component {
                 className={styles.mainLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://github.com/zeppelinos/zepkit">
+                href="https://github.com/Tom2718/ETHCapeTown-Charity">
                > View code on github
               </a>
             </div>

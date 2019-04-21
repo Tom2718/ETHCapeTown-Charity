@@ -38,7 +38,7 @@ class Login extends React.Component {
             label="Remember me?"
             mb={3}
           />
-          <Link to="/">
+          <Link to="/dashboard">
           <Button type="submit" width={1}>
             Sign Up
         </Button>
